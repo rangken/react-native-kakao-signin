@@ -40,14 +40,15 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     // 카카오 로그인 sdk를 사용하기 위해 필요.
-    compile 'com.kakao.sdk:usermgmt:1.1.36'
+    compile group: 'com.kakao.sdk', name: 'usermgmt', version: '1.3.0'
+    compile group: 'com.kakao.sdk', name: 'kakaolink', version: '1.3.0'
     compile('host.exp.exponent:expoview:21.0.0@aar') {
         exclude group: 'com.facebook.android', module: 'facebook-android-sdk'
         exclude group: 'com.facebook.android', module: 'audience-network-sdk'
         exclude group: 'io.nlopez.smartlocation', module: 'library'
         exclude group: 'com.airbnb.android', module: 'lottie'
         exclude group: 'com.crashlytics.sdk.android', module: 'crashlytics'
-        transitive = true;
+        transitive = true
     }
 
 }
