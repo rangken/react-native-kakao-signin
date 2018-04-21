@@ -14,18 +14,20 @@ RCT_REMAP_METHOD(signIn,
     KOSession *session = [KOSession sharedSession];
     // ensure old session was closed
     [session close];
-    
-    [session openWithCompletionHandler:^(NSError *error) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [session openWithCompletionHandler:^(NSError *error) {
         if ([session isOpen]) {
-            // signIn success
-            NSString* token = session.accessToken;
-            resolve(token);
-            
+          // signIn success
+          NSString* token = session.accessToken;
+          resolve(token);
+          
         } else {
-            // failed
-            reject(@"signIn failed.", @"", error);
+          // failed
+          reject(@"signIn failed.", @"", error);
         }
-    }];
+      }];
+    });
+  
 }
 
 RCT_REMAP_METHOD(signOut,
